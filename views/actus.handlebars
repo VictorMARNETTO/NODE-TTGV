@@ -1,0 +1,33 @@
+<section class="section actus-section">
+    <div class="container">
+        <div class="actus">
+            <div class="row">
+                {{!-- {{#if user}}
+                <div class="add-card">
+                    <a href="/articles/add">
+                        <i class="fas fa-plus fa-4x add-icon" alt="ajouter un article"></i>
+                    </a>
+                </div>
+                {{/if}} --}}
+                {{#each posts}}
+                <div class="col-md-4 actus-card">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{image}}" alt="Card image cap" placeholder="No Image Found">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{title}}
+                            </h5>
+                            <p>Publié par {{author}}, le {{moment createDate format="DD-MM-YYYY"}}</p>
+                            {{!-- <p class="card-text">
+                                {{{stripTags content}}}
+                            </p> --}}
+                            <a href="/actus/{{_id}}" class="btn btn-primary">Lire</a>
+                            
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</section>

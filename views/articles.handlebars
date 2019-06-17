@@ -1,0 +1,39 @@
+<section class="section article-section">
+    <div class="container">
+        {{#if user}}
+        <div class="modifications">
+            <div class="row">
+                <div class="col-md-1 edit-button">
+                    <div class="edit-article">
+                        <a href="/articles-edit/{{article._id}}"><i
+                                class="fas fa-edit adit-article fa-3x edit-button"></i></a>
+                    </div>
+
+                </div>
+                <div class="col-md-1 delete-button">
+                    <div class="delete-article">
+                        {{!-- <a href="/articles/delete/{{article._id}}"> --}}
+                        <i onclick="popupConfirm()" class="fas fa-trash-alt delete-article fa-3x delete-button" style="cursor:pointer"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function popupConfirm() {
+                if (confirm("Etes-vous sur de vouloir supprimer cet article ?")) {
+                    window.location.replace('/articles/delete/{{article._id}}')
+                } else {
+                    window.location.replace('/actus')
+                }
+            }
+        </script>
+
+        {{/if}}
+        <h1 class="title article-title">{{article.title}}</h1>
+        <p>par {{article.author}}, le {{moment article.date format="DD-MM-YYYY"}}</p>
+
+        <img src="{{article.image}}" alt="image" class="article-images" placeholder="No Image Found">
+        <p>{{{stripTags article.content}}}</p>
+    </div>
+</section>
