@@ -1,3 +1,7 @@
+// LAYOUTS
+const publicLayout = 'main' ;
+const adminLayout = 'adminMain';
+
 // CONTACT CONST
 const mailSender = 'marnetto.cloud@gmail.com';
 const mailReceiver = 'vic.marnetto@gmail.com';
@@ -75,7 +79,7 @@ app.engine('handlebars', exphbs({
     helpers: {
         stripTags: stripTags
     },
-    defaultLayout: 'main'
+    defaultLayout: publicLayout
 }));
 app.set('view engine', 'handlebars');
 app.use('*', (req, res, next) => {
@@ -122,7 +126,16 @@ app.post('/user/register', redirectAuthSuccess, userRegister)
 app.get('/user/login', redirectAuthSuccess, userLogin)
 app.post('/user/loginAuth', redirectAuthSuccess, userLoginAuth)
 app.get('/user/logout', userLogout)
-
+// app.get('/admin-pannel',auth, adminPannelController)
+app.get('/admin-pannel/contactEdit', (req, res) => {
+    res.render('admin/contactEdit', {layout: adminLayout})
+})
+app.get('/admin-pannel', (req, res) => {
+    res.render('admin/pannel', {layout: adminLayout})
+})
+app.get('/admin-pannel/trombi', (req, res) => {
+    res.render('admin/trombi', {layout: adminLayout})
+})
 // Contact
 app.post('/send-message', (req, res) => {
     const output = `
@@ -145,10 +158,10 @@ app.post('/send-message', (req, res) => {
         auth: {
             user: 'marnetto.cloud@gmail.com', // generated ethereal user
             pass: mailPassword,// generated ethereal password
-                     
+
         },
-        tls:{
-            rejectUnauthorized:false
+        tls: {
+            rejectUnauthorized: false
         }
     });
 
@@ -163,19 +176,19 @@ app.post('/send-message', (req, res) => {
         html: output, // html body
     };
 
-    transporter.sendMail(mailOptions, (error,info) => {
+    transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             return console.log(error);
-            
+
         }
         // console.log("Message sent: %s", info.messageId);
         // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        
+
         res.redirect('/');
-    
+
     })
- }
-    
+}
+
 )
 
 app.use((req, res) => {
@@ -186,7 +199,7 @@ app.use((req, res) => {
 app.listen(3000, function () {
     console.log("Server started...");
     console.log("http://localhost:3000");
-    
+
 })
 
 

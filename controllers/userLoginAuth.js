@@ -14,7 +14,7 @@ module.exports = (req, res) => {
 
                     req.session.userId = user._id
                     
-                    res.redirect('/')
+                    res.redirect('/admin-pannel')
                 }
                 else {
                     console.log("Pas OK");

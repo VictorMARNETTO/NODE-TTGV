@@ -108,7 +108,7 @@ a {
 }
 
 section {
-	padding: 0px 0 0vh 0;
+	padding: 100px 0 0vh 0;
 }
 
 
@@ -559,8 +559,8 @@ footer {
 }
 
 .card{
-	min-width: 18rem;
-	min-height: 32rem;
+	max-width: 250px;
+	max-height: 250px;
 	margin-bottom: 15px;
 }
 
@@ -826,4 +826,34 @@ footer {
 		color: #ffb600;
 		margin-bottom: 3px;
 	}
+}
+/*=====================================
+****           TROMBI              ****
+=====================================*/
+.card-trombi{
+	border: 0;
+}
+.card-body{
+	position: relative;
+}
+
+.trombi-pictures {
+	border-radius:100%;
+	width:200px;
+	height:200px
+}
+.container-trombi{
+	border-radius: 10px;
+	border: 1px solid #ff00ff;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.card-trombi img{
+	width: 130px;
+	height: 130px;
+	border-radius: 50%;
+}
+.trombi-title{
+	text-align: center;
+	color: blue;
 }

@@ -1,0 +1,108 @@
+<section class="contact-section">
+    <div class="container contact-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form">
+
+                            <!-- CONTACT-TITLE -->
+                            <form action="/admin" method="post">
+                                <h2>Contactez-nous</h2>
+                                <textarea style="width:100%; height: 15vh">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, maiores fuga? Commodi qui labore iusto, at laborum voluptatem fugit assumenda ipsum ducimus voluptatum. Veniam nesciunt consequatur officia nobis rem esse.{{contact.content}}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Phone -->
+                    <div class="col-md-4">
+                        <div class="phone">
+                            <div class="phone-number">
+                                <i class="fas fa-phone"></i>
+                                <input type="phone" value="02.51.**.**.**{{contact.phone}}">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Adress -->
+                    <div class="col-md-8">
+                        <div class="adress">
+                            <i class="fas fa-map-marker-alt"></i>
+                        <input value="Rue de la Levrette 85190 - La Genétouze{{contact.address}}">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary">update</button>
+
+                </form>
+                {{!-- <form method="POST" action="send-message"> --}}
+                <div class="row">
+                    <!-- Name -->
+                    <div class="col-md-6">
+                        <div class="contact-form">
+                            <label for="name">Nom:</label>
+                            <input type="text" id="name" class="name" name="name" placeholder="Nom"
+                                autocomplete="off" />
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="col-md-6">
+                        <div class="contact-form">
+                            <label for="email">Email:</label>
+                            <input id="email" type="email" class="email" name="email" placeholder="Email"
+                                autocomplete="off" />
+                            <br />
+                            <small>Vous ne receverez pas de publicités.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Service -->
+                    <div class="col-md-12">
+                        <div class="choose-service">
+                            <label for="club-link">Votre lien au club</label>
+                            <select id="club-link" name="liens">
+                                <option id="club-link">Adhérent</option>
+                                <option id="club-link">Aucun lien actuellement</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="contact-form">
+                            <label for="name">Sujet:</label>
+                            <input type="text" id="name" class="name" name="subject" placeholder="Nom"
+                                autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Message -->
+                        <label for="message">Votre message :</label>
+                        <textarea id="message" name="message" row="3" class="contact-message"
+                            autocomplete="off"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Button -->
+                    <div class="col-md-12">
+                        <button class="btn send-btn" type="submit">
+                            Envoyer
+                        </button>
+                        <i class="fas fa-envelope send-icon"></i>
+                    </div>
+                </div>
+                {{!-- </form> --}}
+            </div>
+            <div class="col-md-6">
+                <div class="map">
+                    <iframe title="map"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2734.918245797948!2d-1.5106996!3d46.727074!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4a7cab85890ce542!2sBasket+Club+La+Gen%C3%A9touze!5e0!3m2!1sfr!2sfr!4v1551793254416"
+                        width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
