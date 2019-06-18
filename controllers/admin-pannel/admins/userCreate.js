@@ -1,12 +1,11 @@
+const adminLayout = 'adminMain'
+
 module.exports = (req, res) => {
 
     console.log(req.flash('data'));
     
 
-    res.render("register", {
-        errors : req.flash('registerError'),
-        data: req.flash('data')[0]
-    })
+    res.render("admin/admins/addAdmin", {layout: adminLayout})
 }
 
 

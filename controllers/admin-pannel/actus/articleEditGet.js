@@ -1,21 +1,15 @@
-const Delete = require('../database/models/Article')
+const Edit = require('../../../database/models/Article');
+const adminLayout = 'adminMain'
 
-module.exports =  async (req, res) => {
+module.exports = async (req, res) => {
 
-       const articleId = await Delete.findById(req.params.id)
+   const article = await Edit.findById(req.params.id)
 
-       Delete.findByIdAndRemove(articleId, function (err) {
-           if (err)
-               throw err;
-       })
-           console.log(Delete);
-
-       res.redirect('/actus')
-
-}
+   res.render('articles/edit', { article }, { layout: adminLayout })
+};
 
 
-//    __________
+//   __________
 //  / ___  ___ \
 // / / @ \/ @ \ \
 // \ \___/\___/ /\

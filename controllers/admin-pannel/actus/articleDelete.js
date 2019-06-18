@@ -1,21 +1,17 @@
-const User = require('../database/models/User')
+const Delete = require('../../../database/models/Article')
 
-module.exports = (req, res) => {
-    User.create(
-        req.body, (error, user) => {
+module.exports =  async (req, res) => {
 
-            if (error) {
+       const articleId = await Delete.findById(req.params.id)
 
-                const registerError = Object.keys(error.errors).map(key => error.errors[key].message);
+       Delete.findByIdAndRemove(articleId, function (err) {
+           if (err)
+               throw err;
+       })
+           console.log(Delete);
 
-                req.flash('registerError', registerError)
-                req.flash('data', req.body)
+       res.redirect('/actus')
 
-                return res.redirect("/user/create")
-            }
-            res.redirect('/')
-        }
-    )
 }
 
 

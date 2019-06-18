@@ -1,17 +1,12 @@
-// Post
-const Post = require("../database/models/Article")
+const Post = require("../../database/models/Article")
 
-module.exports = async (req,res) => {
+module.exports =  async (req, res) => {
+    const article = await Post.findById(req.params.id)
 
-        const posts = await Post.find({})
+    res.render("articles", {article})
+} 
 
-        console.log(req.session);
-
-        res.render("actus", {posts}
-)}
-
-
-//   __________
+//    __________
 //  / ___  ___ \
 // / / @ \/ @ \ \
 // \ \___/\___/ /\

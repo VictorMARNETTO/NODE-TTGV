@@ -1,10 +1,23 @@
-const Post = require("../database/models/Article")
+const User = require('../../../database/models/Admin')
 
-module.exports =  async (req, res) => {
-    const article = await Post.findById(req.params.id)
+module.exports = (req, res) => {
+    User.create(
+        req.body, (error, user) => {
 
-    res.render("articles", {article})
-} 
+            if (error) {
+
+                const registerError = Object.keys(error.errors).map(key => error.errors[key].message);
+
+                req.flash('registerError', registerError)
+                req.flash('data', req.body)
+
+                return res.redirect("/user/create")
+            }
+            res.redirect('/')
+        }
+    )
+}
+
 
 //    __________
 //  / ___  ___ \

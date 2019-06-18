@@ -1,0 +1,56 @@
+<section class="section articles-add">
+    <div class="container is-fullhd">
+        <form action="/admin-pannel/editTrombi/post/{{_id}}" method="POST" enctype="multipart/form-data"
+            style="text-align: center; color: lightblue; font-size: 150%">
+            <div class="card">
+                    <img style="width: 200px; height: 200px; border-radius: 100%; margin-left: 40%; border: 8px lightblue solid" src="https://cdn.pixabay.com/photo/2017/10/10/07/48/beach-2836300_960_720.jpg{{data.image}}"
+                        alt="image">
+                <div class="card-body">
+                    <div class="field">
+                        <label class="label">Nom</label>
+                        <div class="control">
+                            <input class="input" type="text" name="title" value="{{data.name}}" placeholder="Nom">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Prénom</label>
+                        <div class="control">
+                            <input class="input" type="text" name="title" value="{{data.surname}}" placeholder="Prénom">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Date de naissance</label>
+                        <div class="control">
+                            <input class="input" type="date" name="title" value="{{data.birthDate}}"
+                                placeholder="12/12/1977">
+                        </div>
+                    </div>
+                </div>
+                <div class="file">
+                    <label class="file-label">
+                        <span class="file-cta">
+                            <span class="file-label">
+                                Choisissez une image...
+                            </span>
+                        </span>
+                        <input class="file-input" type="file" name="image">
+                    </label>
+                </div>
+                <br>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-link">Enregister</button>
+                    </div>
+                </div>
+                <br>
+            </div>
+    </div>
+    </form>
+    <br>
+    <form action="/admin-pannel/trombi" method="GET" style="text-align: center; font-size: 150%">
+        <div class="control">
+            <button class="button is-text">Annuler</button>
+        </div>
+    </form>
+    </div>
+</section>

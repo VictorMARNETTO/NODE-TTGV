@@ -1,13 +1,9 @@
-const Edit = require ("../database/models/Article");
-
-module.exports = async (req,res) => {
-
-   const article = await Edit.findById(req.params.id)
-
-   res.render ('articles/edit', {article})};
+module.exports = (req, res) => {
+    res.render('admin/login')
+}
 
 
-//   __________
+//    __________
 //  / ___  ___ \
 // / / @ \/ @ \ \
 // \ \___/\___/ /\

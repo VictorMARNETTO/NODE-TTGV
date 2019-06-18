@@ -1,4 +1,4 @@
-const User = require('../database/models/User')
+const User = require('../database/models/Admin')
 
 module.exports = (req, res, next) => {
 
@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
 
     User.findById(req.session.userId, (error, user) => {
         if (error || !user) {
-            return res.redirect('/user/login')
+            return res.redirect('/admin/login')
         }
         next()
     })

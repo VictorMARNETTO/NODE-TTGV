@@ -1,9 +1,17 @@
-module.exports = (req, res) => {
-    res.render('login')
-}
+// Post
+const Post = require('../../database/models/Article')
+
+module.exports = async (req,res) => {
+
+        const posts = await Post.find({})
+
+        console.log(req.session);
+
+        res.render("actus", {posts}
+)}
 
 
-//    __________
+//   __________
 //  / ___  ___ \
 // / / @ \/ @ \ \
 // \ \___/\___/ /\

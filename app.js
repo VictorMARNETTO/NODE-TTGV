@@ -1,5 +1,5 @@
 // LAYOUTS
-const publicLayout = 'main' ;
+const publicLayout = 'main';
 const adminLayout = 'adminMain';
 
 // CONTACT CONST
@@ -21,19 +21,33 @@ const { stripTags } = require('./helpers/hbs');
 // Controller //
 
 // article0
-const articleSingleController = require('./controllers/articleSingle');
-const createArticleController = require('./controllers/articleAdd');
-const articlePostController = require('./controllers/articlePost');
-const articleEditGetController = require('./controllers/articleEditGet');
-const articleDeleteController = require('./controllers/articleDelete');
-const homepage = require('./controllers/homePage');
-const index = require('./controllers/index');
+const articleSingleController = require('./controllers/visit-public/articleSingle');
+const createArticleController = require('./controllers/admin-pannel/actus/articleAdd');
+const articlePostController = require('./controllers/admin-pannel/actus/articlePost');
+const articleEditGetController = require('./controllers/admin-pannel/actus/articleEditGet');
+const articleDeleteController = require('./controllers/admin-pannel/actus/articleDelete');
+const homepage = require('./controllers/visit-public/actus');
+const index = require('./controllers/visit-public/index');
 // user
-const userCreate = require('./controllers/userCreate');
-const userRegister = require('./controllers/userRegister');
-const userLogin = require('./controllers/userLogin');
+
+const userLogin = require('./controllers/visit-public/userLogin');
 const userLoginAuth = require('./controllers/userLoginAuth');
-const userLogout = require('./controllers/userLogout.js');
+const userLogout = require('./controllers/userLogout');
+// ADMIN
+const adminPannel = require('./controllers/admin-pannel/pannel')
+    , adminPannelTrombi = require('./controllers/admin-pannel/trombi/admin-pannelTrombi')
+    , adminPannelActus = require('./controllers/admin-pannel/actus/admin-pannelActus')
+    , adminPannelContact = require('./controllers/admin-pannel/contact/admin-pannelContact.js')
+    , adminPannelCalendar = require('./controllers/admin-pannel/calendar/admin-pannelCalendar')
+    , adminUpdateContact = require('./controllers/admin-pannel/contact/contactUpdate.js')
+    , adminCreateOne = require('./controllers/admin-pannel/admins/userCreate')
+    , adminRegisterOne = require('./controllers/admin-pannel/admins/userRegister')
+    , adminEditOne = require('./controllers/admin-pannel/admins/userEdit')
+    , adminUpdateOne = require('./controllers/admin-pannel/admins/userUpdate')
+    , adminTrombiAdd = require('./controllers/admin-pannel/trombi/trombiAdd.js')
+    , adminTrombiPost = require('./controllers/admin-pannel/trombi/trombiPost')
+    , adminTrombiEdit = require('./controllers/admin-pannel/trombi/trombiEdit')
+    , adminTrombiUpdate = require('./controllers/admin-pannel/trombi/trombiUpdate')
 
 
 const app = express();
@@ -74,7 +88,6 @@ MomentHandler.registerHelpers(Handlebars);
 
 app.use(express.static('public'));
 
-// Route
 app.engine('handlebars', exphbs({
     helpers: {
         stripTags: stripTags
@@ -87,20 +100,59 @@ app.use('*', (req, res, next) => {
     next()
 })
 
-// Middleware
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Route
 const articleValidPost = require('./middleware/articleValidPost')
 app.use("/articles/post", articleValidPost)
-// app.use("articles/add", auth)
+
+// CONNEXION / DECONNEXION
+app.get('/admin/login', redirectAuthSuccess, userLogin)
+app.post('/admin/loginAuth', redirectAuthSuccess, userLoginAuth)
+app.get('/admin/logout', userLogout)
+
+// VISIT PUBLIC
 app.get("/", index)
 app.get("/actus", homepage)
-
-// Articles       
-app.get("/articles/add", auth, createArticleController)
 app.get("/actus/:id", articleSingleController)
-app.post("/articles/post", auth, articleValidPost, articlePostController)
-app.get("/articles/delete/:id", auth, articleDeleteController)
-app.get("/articles-edit/:id", auth, articleEditGetController)
-app.post("/articles/edit/:id", function (req, res) {
+
+
+// ====================== PANNEL ADMIN =========================
+app.get('/admin-pannel', auth, adminPannel)
+app.get('/admin-pannel/admins/create', auth, adminCreateOne)
+app.post('/admin-pannel/admins/register', auth, redirectAuthSuccess, adminRegisterOne)
+app.get('/admin-pannel/admins/edit/:id', auth, adminEditOne)
+// app.get('/admin-pannel/admins/delete/:id')
+
+// ================= TROMBI
+app.get('/admin-pannel/trombi', auth, adminPannelTrombi)
+app.get('/admin-pannel/trombi/add', auth, adminTrombiAdd)
+app.get('/admin-pannel/trombi/edit/:id', auth, adminTrombiEdit)
+// app.post('/admin-pannel/trombi/edit/post/:id')
+// app.get('/admin-pannel/trombi/delete/:id')
+// ====================== ACTUS
+app.get('/admin-pannel/actus', auth, adminPannelActus)
+app.get("/admin-pannel/actus/add", auth, createArticleController)
+app.post("/admin-pannel/actus/post", auth, articleValidPost, articlePostController)
+app.get("/admin-pannel/actus/delete/:id", auth, articleDeleteController)
+app.get('/admin-pannel/actus/edit/:id', auth, articleEditGetController)
+app.post("/admin-pannel/actus/edit/post/:id", function (req, res) {
     const Article = require('./database/models/Article');
     const path = require('path')
     let query = { id: req.body.articleId }
@@ -119,23 +171,81 @@ app.post("/articles/edit/:id", function (req, res) {
         });
     })
 });
+// ======================== CALENDAR
+app.get('/admin-pannel/calendar', auth, adminPannelCalendar)
 
-// Users
-app.get('/user/create', redirectAuthSuccess, userCreate)
-app.post('/user/register', redirectAuthSuccess, userRegister)
-app.get('/user/login', redirectAuthSuccess, userLogin)
-app.post('/user/loginAuth', redirectAuthSuccess, userLoginAuth)
-app.get('/user/logout', userLogout)
-// app.get('/admin-pannel',auth, adminPannelController)
-app.get('/admin-pannel/contactEdit', (req, res) => {
-    res.render('admin/contactEdit', {layout: adminLayout})
+// ======================== CONTACT
+app.get('/admin-pannel/contactEdit', auth, adminPannelContact)
+// app.post('/admin-pannel/contactEdit/post')
+
+
+
+
+
+
+
+// ========================================================
+// ========================================================
+// ========================================================
+// ========================================================
+// ========================================================
+// ========================================================
+// ========================================================
+
+app.get('admin-pannel/deleteAdmin/:id', async (req, res) => {
+
+    const adminId = await Delete.findById(req.params.id)
+
+    Delete.findByIdAndRemove(adminId, function (err) {
+        if (err)
+            throw err;
+    })
+    console.log(Delete);
+
+    res.redirect('/admin-pannel')
+
 })
-app.get('/admin-pannel', (req, res) => {
-    res.render('admin/pannel', {layout: adminLayout})
+app.get('admin-pannel/deleteTrombi/:id', async (req, res) => {
+
+    const trombiId = await Delete.findById(req.params.id)
+
+    Delete.findByIdAndRemove(trombiId, function (err) {
+        if (err)
+            throw err;
+    })
+    console.log(Delete);
+
+    res.redirect('/admin-pannel/trombi')
+
 })
-app.get('/admin-pannel/trombi', (req, res) => {
-    res.render('admin/trombi', {layout: adminLayout})
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Contact
 app.post('/send-message', (req, res) => {
     const output = `
@@ -216,8 +326,8 @@ app.listen(3000, function () {
 //       -- --
 
 
-//     ___               _   __   _        __                    __  ___     
-//   / _ )  __ __      | | / /  (_) ____ / /_ ___   ____       /  |/  /     
-//  / _  | / // /      | |/ /  / / / __// __// _ \ / __/      / /|_/ /      
-// /____/  \_, /       |___/  /_/  \__/ \__/ \___//_/        /_/  /_/       
-//        /___/                                                             
+//     ___               _   __   _        __                    __  ___
+//   / _ )  __ __      | | / /  (_) ____ / /_ ___   ____       /  |/  /
+//  / _  | / // /      | |/ /  / / / __// __// _ \ / __/      / /|_/ /
+// /____/  \_, /       |___/  /_/  \__/ \__/ \___//_/        /_/  /_/
+//        /___/

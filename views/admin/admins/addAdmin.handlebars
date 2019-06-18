@@ -8,33 +8,45 @@
     </ol>
 </div>
 
-        <form class="form-login" action="/user/register" method="POST" enctype="multipart/form-data">
+        <form class="form-login" action="/admin-pannel/addAdmin/post" method="POST" enctype="multipart/form-data" style="text-align: center; color: green; font-size: 150%">
             <div class="field">
-                <label class="label">Name</label>
+                <label class="label">Nom</label>
                 <div class="control">
                     <input class="input" type="text" name="name" placeholder="Text input" value={{data.name}}>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Prénom</label>
+                <div class="control">
+                    <input class="input" type="text" name="name" placeholder="Text input" value={{data.surname}}>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Date de naissance</label>
+                <div class="control">
+                    <input class="input" type="text" name="name" placeholder="Text input" value={{data.birthdayDate}}>
                 </div>
             </div>
             <div class="field">
                 <label class="label">Email</label>
                 <div class="control has-icons-left has-icons-right">
                     <input class="input" type="email" name="email" placeholder="Email input" value={{data.email}}>
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                    </span>
+                   
                 </div>
             </div>
             <div class="field">
-                <label class="label">Password</label>
+                <label class="label">Mot de passe</label>
                 <div class="control">
                     <input class="input" type="password" name="password" placeholder="password" value={{data.password}}>
                 </div>
             </div>
+            <br>
             <div class="field is-grouped">
                 <div class="control">
                     <button class="button is-link">S'enregistrer</button>
                 </div>
         </form>
+        <br>
         <form action="/" method="GET" enctype="multipart/form-data">
                 <div class="control">
                     <button class="button is-text">Annuler</button>

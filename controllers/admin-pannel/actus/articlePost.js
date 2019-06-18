@@ -1,5 +1,5 @@
 const path = require('path')
-const Post = require("../database/models/Article")
+const Post = require('../../../database/models/Article')
 
 module.exports = (req, res) => {
 

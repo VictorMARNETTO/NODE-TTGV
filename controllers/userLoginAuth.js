@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt')
-const User = require('../database/models/User')
+const User = require('../database/models/Admin')
 
 module.exports = (req, res) => {
 
@@ -19,14 +19,14 @@ module.exports = (req, res) => {
                 else {
                     console.log("Pas OK");
                     
-                    res.redirect('/user/login')
+                    res.redirect('/admin/login')
                 }
             })
         } else {
             console.log("NUL2");
             
 
-            return res.redirect('/user/login')
+            return res.redirect('/admin/login')
         }
     })
 }

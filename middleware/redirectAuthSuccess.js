@@ -1,4 +1,4 @@
-const User = require('../database/models/User')
+const User = require('../database/models/Admin')
 
 module.exports = (req, res, next) => {
 
