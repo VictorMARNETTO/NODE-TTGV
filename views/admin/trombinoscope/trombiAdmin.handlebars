@@ -9,7 +9,7 @@
         <div class="row">
 
             <div class="col-md-12">
-                <a href="/admin-pannel/addTrombi"><i class="fas fa-plus-circle fa-2x"></i></a>
+                <a href="/admin-pannel/trombi/add"><i class="fas fa-plus-circle fa-2x"></i></a>
             </div>
         </div>
         {{!-- ============================================================= BUREAU =============================================== --}}
@@ -21,30 +21,33 @@
             </div>
             <div class="row">
 
+                {{#each trombiBureau}}
                 <div class="col-md-2">
+
                     {{!-- TROMBI --}}
                     <div class="card card-trombi">
-                        <img class="card-img-top trombi-pictures"
-                            src="https://cdn.pixabay.com/photo/2019/06/13/11/23/landscape-4271367_960_720.jpg" alt="">
+                        <img class="card-img-top trombi-pictures" src="{{image}}" alt="">
                         <div class="card-body">
-                            <h5 class="card-subtitle mb-2 text-muted">Michel MERCIER</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">21/07/74</h6>
+                            <h5 class="card-subtitle mb-2 text-muted">{{name}}</h5>
+                            <h5 class="card-subtitle mb-2 text-muted">{{surname}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{birthDate}}</h6>
 
                         </div>
                         <div class="row">
                             <div class="col-md-2"></div>
                             <div class="col-md-4">
-                                <a href="/admin-pannel"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="/admin-pannel/trombi/edit/{{_id}}"><i class="fas fa-pencil-alt"></i></a>
 
                             </div>
                             <div class="col-md-4">
-                                <a href="/admin-pannel"><i class="fas fa-trash-alt"></i></a>
+                                <a href="/admin-pannel/trombi/delete/{{_id}}"><i class="fas fa-trash-alt"></i></a>
 
                             </div>
                             <div class="col-md-2"></div>
                         </div>
                     </div>
                 </div>
+                {{/each}}
             </div>
         </div>
         {{!-- ============================================================= EQUIPE 1 =============================================== --}}
@@ -59,31 +62,35 @@
                             </div>
                         </div>
                         <div class="row">
+                            {{#each trombi1}}
                             <div class="col-md-4">
+
                                 {{!-- TROMBI --}}
                                 <div class="card card-trombi">
-                                    <img class="card-img-top trombi-pictures"
-                                        src="https://cdn.pixabay.com/photo/2019/06/13/11/23/landscape-4271367_960_720.jpg"
-                                        alt="">
+                                    <img class="card-img-top trombi-pictures" src="{{image}}" alt="">
                                     <div class="card-body">
-                                        <h5 class="card-subtitle mb-2 text-muted">Michel MERCIER</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">21/07/74</h6>
+                                        <h5 class="card-subtitle mb-2 text-muted">{{name}}</h5>
+                                        <h5 class="card-subtitle mb-2 text-muted">{{surname}}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{birthDate}}</h6>
 
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-4">
-                                            <a href="/admin-pannel"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="/admin-pannel/trombi/edit/{{_id}}"><i
+                                                    class="fas fa-pencil-alt"></i></a>
 
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="/admin-pannel"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="/admin-pannel/trombi/delete/{{_id}}"><i
+                                                    class="fas fa-trash-alt"></i></a>
 
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
                                 </div>
                             </div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>
@@ -97,31 +104,36 @@
                             </div>
                         </div>
                         <div class="row">
+                            
+                            {{#each trombi2}}
                             <div class="col-md-4">
+
                                 {{!-- TROMBI --}}
                                 <div class="card card-trombi">
-                                    <img class="card-img-top trombi-pictures"
-                                        src="https://cdn.pixabay.com/photo/2019/06/13/11/23/landscape-4271367_960_720.jpg"
-                                        alt="">
+                                    <img class="card-img-top trombi-pictures" src="{{image}}" alt="">
                                     <div class="card-body">
-                                        <h5 class="card-subtitle mb-2 text-muted">Michel MERCIER</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">21/07/74</h6>
+                                        <h5 class="card-subtitle mb-2 text-muted">{{name}}</h5>
+                                        <h5 class="card-subtitle mb-2 text-muted">{{surname}}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{birthDate}}</h6>
 
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-4">
-                                            <a href="/admin-pannel"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="/admin-pannel/trombi/edit/{{_id}}"><i
+                                                    class="fas fa-pencil-alt"></i></a>
 
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="/admin-pannel"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="/admin-pannel/trombi/delete/{{_id}}"><i
+                                                    class="fas fa-trash-alt"></i></a>
 
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
                                 </div>
                             </div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>
@@ -136,32 +148,39 @@
                             <div class="col-md-12">
                                 <h4 class="trombi-title">Equipe 3</h4>
                             </div>
-                            
+
                         </div>
                         <div class="row">
+                            
+                            {{#each trombi3}}
                             <div class="col-md-4">
+
+                                {{!-- TROMBI --}}
                                 <div class="card card-trombi">
-                                    <img class="card-img-top trombi-pictures"
-                                        src="https://cdn.pixabay.com/photo/2019/06/13/11/23/landscape-4271367_960_720.jpg"
-                                        alt="">
+                                    <img class="card-img-top trombi-pictures" src="{{image}}" alt="">
                                     <div class="card-body">
-                                        <h5 class="card-subtitle mb-2 text-muted">Michel MERCIER</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">21/07/74</h6>
+                                        <h5 class="card-subtitle mb-2 text-muted">{{name}}</h5>
+                                        <h5 class="card-subtitle mb-2 text-muted">{{surname}}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{birthDate}}</h6>
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-4">
-                                            <a href="/admin-pannel"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="/admin-pannel/trombi/edit/{{_id}}"><i
+                                                    class="fas fa-pencil-alt"></i></a>
 
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="/admin-pannel"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="/admin-pannel/trombi/delete/{{_id}}"><i
+                                                    class="fas fa-trash-alt"></i></a>
 
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
                                 </div>
                             </div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>
@@ -175,27 +194,36 @@
                             </div>
                         </div>
                         <div class="row">
+                            
+                            {{#each trombi4}}
                             <div class="col-md-4">
+
+                                {{!-- TROMBI --}}
                                 <div class="card card-trombi">
-                                    <img class="card-img-top trombi-pictures"
-                                        src="https://cdn.pixabay.com/photo/2019/06/13/11/23/landscape-4271367_960_720.jpg"
-                                        alt="">
+                                    <img class="card-img-top trombi-pictures" src="{{image}}" alt="">
                                     <div class="card-body">
-                                        <h5 class="card-subtitle mb-2 text-muted">Michel MERCIER</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">21/07/74</h6>
+                                        <h5 class="card-subtitle mb-2 text-muted">{{name}}</h5>
+                                        <h5 class="card-subtitle mb-2 text-muted">{{surname}}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{birthDate}}</h6>
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-4">
-                                            <a href="/admin-pannel"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="/admin-pannel/trombi/edit/{{_id}}"><i
+                                                    class="fas fa-pencil-alt"></i></a>
+
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="/admin-pannel"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="/admin-pannel/trombi/delete/{{_id}}"><i
+                                                    class="fas fa-trash-alt"></i></a>
+
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
                                 </div>
                             </div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>

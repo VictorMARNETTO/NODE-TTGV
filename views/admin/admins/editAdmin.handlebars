@@ -1,41 +1,48 @@
 <section class="section articles-add">
   <div class="container is-fullhd">
-    <form action="/admin-pannel/editAdmin/post/{{_id}}" method="POST" enctype="multipart/form-data" style="text-align: center;">
+    <form action="/admin-pannel/admins/edit/post/{{admin._id}}" method="POST" enctype="multipart/form-data"
+      style="text-align: center;">
       <div class="field">
         <label class="label" style="color: blue; font-size: 150%">Nom</label>
         <div class="control">
-          <input class="input" type="text" name="title" value="{{data.name}}" style="padding-left: 200px;">
+          <input class="input" type="text" name="title" value="{{admin.name}}" style="width:300px">
         </div>
       </div>
       <div class="field">
         <label class="label" style="color: blue; font-size: 150%">Prénom</label>
         <div class="control">
-          <input class="input" type="text" name="title" value="{{data.surname}}" style="padding-left: 200px;">
+          <input class="input" type="text" name="title" value="{{admin.surname}}" style="width:300px">
         </div>
       </div>
       <div class="field">
         <label class="label" style="color: blue; font-size: 150%">Date de naissance</label>
         <div class="control">
-          <input class="input" type="text" name="birthday" value="{{data.birthdate}}" style="padding-left: 200px;">
+          <input class="input" type="date" name="birthday" value="{{moment admin.birthdate format="YYYY-MM-DD"}}" style="width:300px"
+          >
         </div>
       </div>
       <div class="field">
         <label class="label" style="color: blue; font-size: 150%">Email</label>
         <div class="control">
-          <input class="input" type="email" name="email" value="{{data.email}}" style="padding-left: 200px;">
+          <input class="input" type="email" name="email" value="{{admin.email}}" style="width:300px">
         </div>
       </div>
-    <br>
+      <div class="field">
+        <label class="label" style="color: blue; font-size: 150%">Mot de Passe</label>
+        <div class="control">
+          <input class="input" type="password" value="{{admin.password}}" style="width:300px" disabled="disabled">
+        </div>
+      </div>
+      <br>
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-link">Enregister</button>
+          <button type="submit" class="button is-link">Enregister</button>
         </div>
     </form>
     <br>
-    <form action="/actus" method="GET" enctype="multipart/form-data">
-            <div class="control">
-          <button class="button is-text">Annuler</button>
-        </div>
+    <form action="/admin-pannel" method="GET" enctype="multipart/form-data">
+      <div class="control">
+        <button class="button is-text">Annuler</button>
       </div>
     </form>
   </div>

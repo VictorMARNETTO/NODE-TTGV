@@ -4,11 +4,10 @@ const TrombiSchema = new mongoose.Schema({
 
     name: String,
     surname: String,
-    birthdate: String,
-    image: {
-        type: String,
-        required: false,
-    },
+    birthDate: String,
+    image: String,
+    status: String,
+    equipe: String
 })
 
 const Trombi = mongoose.model('licencieTrombi', TrombiSchema)

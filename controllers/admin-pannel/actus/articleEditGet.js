@@ -1,4 +1,4 @@
-const Edit = require('../../../database/models/Article');
+const Edit = require('../../../database/models/Actus');
 const adminLayout = 'adminMain'
 
 module.exports = async (req, res) => {

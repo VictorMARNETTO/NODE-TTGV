@@ -1,9 +1,7 @@
-module.exports = (req,res) => {
+const adminLayout = 'adminMain'
 
-        if(req.session.userId) {
-        return res.render('articles/add')
-        }
-        res.redirect('/user/login')
+module.exports = (req,res) => {
+        res.render('admin/actus/addActus', {layout:adminLayout})
 }
 
 

@@ -1,4 +1,4 @@
-const Delete = require('../../../database/models/Article')
+const Delete = require('../../../database/models/Actus')
 
 module.exports =  async (req, res) => {
 

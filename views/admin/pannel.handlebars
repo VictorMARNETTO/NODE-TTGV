@@ -7,50 +7,42 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Date de naissance</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>trello</td>
-            <td>arthur</td>
-            <td>25/09/1789</td>
-            <td>trello@hotmail.fr</td>
-            <td>
-                <a href="admin-pannel/editAdmin"><i class="fas fa-pencil-alt"></i></a>
-                <a href=""><i class="fas fa-trash-alt"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td>vernau</td>
-            <td>kanha</td>
-            <td>14/03/2003</td>
-            <td>kanha@gmail.com</td>
-            <td>
-                <a href="admin-pannel/editAdmin"><i class="fas fa-pencil-alt"></i></a>
-                <a href=""><i class="fas fa-trash-alt"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td>lucas</td>
-            <td>lucie</td>
-            <td>24/03/1986</td>
-            <td>lucie.cherie@outlook.fr</td>
-            <td>
-                <a href="admin-pannel/editAdmin"><i class="fas fa-pencil-alt"></i></a>
-                <a href=""><i class="fas fa-trash-alt"></i></a>
-            </td>
-        </tr>
-        <a href="/admin-pannel/admins/create"><i class="fas fa-plus-circle fa-2x"></i></a>
-    </tbody>
-</table> 
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Date de naissance</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each admin}}
+                        <tr>
+                            <td>{{this.name}}</td>
+                            <td>{{this.surname}}</td>
+                            <td>{{moment this.birthdate format="DD/MM/YYYY"}}</td>
+                            <td>{{this.email}}</td>
+                            <td>
+                                <a href="admin-pannel/admins/edit/{{this._id}}"><button><i
+                                            class="fas fa-pencil-alt"></i></button></a>
+                                <button onclick="deleteAdmin()"><i class="fas fa-trash-alt"></button></i>
+                            </td>
+                        </tr>
+                        <script>
+                            function deleteAdmin() {
+                                if (confirm("Voulez-vous supprimer cet Administrateur ?")) {
+                                    window.location.replace(`/admin-pannel/admins/delete/{{this._id}}`)
+                                } else {
+                                    windows.location.replace(`/admin-pannel`)
+                                }
+                            }
+                        </script>
+                        {{/each}}
+                        <a href="/admin-pannel/admins/create"><i class="fas fa-plus-circle fa-2x"></i></a>
+                    </tbody>
+                </table>
             </div>
             <div class="col-md-6"></div>
         </div>

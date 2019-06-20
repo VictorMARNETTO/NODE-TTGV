@@ -1,11 +1,11 @@
-const User = require('../database/models/Admin')
+const Admin = require('../database/models/Admin')
 
 module.exports = (req, res, next) => {
 
     // Connecte toi dans la Database
 
-    User.findById(req.session.userId, (error, user) => {
-        if (error || !user) {
+    Admin.findById(req.session.adminId, (error, admin) => {
+        if (error || !admin) {
             return res.redirect('/admin/login')
         }
         next()

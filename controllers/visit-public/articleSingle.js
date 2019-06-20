@@ -1,4 +1,4 @@
-const Post = require("../../database/models/Article")
+const Post = require("../../database/models/Actus")
 
 module.exports =  async (req, res) => {
     const article = await Post.findById(req.params.id)

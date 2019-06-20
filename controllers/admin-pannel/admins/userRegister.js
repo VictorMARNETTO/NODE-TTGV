@@ -1,25 +1,26 @@
-const User = require('../../../database/models/Admin')
+const Admin = require('../../../database/models/Admin')
 
 module.exports = (req, res) => {
-    User.create(
-        req.body, (error, user) => {
+    Admin.create(
+        req.body, (error, admin) => {
 
             if (error) {
 
-                const registerError = Object.keys(error.errors).map(key => error.errors[key].message);
+                // const registerError = Object.keys(error.errors).map(key => error.errors[key].message);
 
-                req.flash('registerError', registerError)
-                req.flash('data', req.body)
-
-                return res.redirect("/user/create")
+                // req.flash('registerError', registerError)
+                // req.flash('data', req.body)
+                console.log(error);
+                
+                return res.redirect("/admin-pannel/admins/create")
             }
-            res.redirect('/')
+            res.redirect('/admin-pannel')
         }
     )
 }
 
 
-//    __________
+//   __________
 //  / ___  ___ \
 // / / @ \/ @ \ \
 // \ \___/\___/ /\

@@ -1,3 +1,4 @@
+const PORT = 3000;
 // LAYOUTS
 const publicLayout = 'main';
 const adminLayout = 'adminMain';
@@ -37,17 +38,18 @@ const userLogout = require('./controllers/userLogout');
 const adminPannel = require('./controllers/admin-pannel/pannel')
     , adminPannelTrombi = require('./controllers/admin-pannel/trombi/admin-pannelTrombi')
     , adminPannelActus = require('./controllers/admin-pannel/actus/admin-pannelActus')
-    , adminPannelContact = require('./controllers/admin-pannel/contact/admin-pannelContact.js')
+    , adminPannelContact = require('./controllers/admin-pannel/contact/admin-pannelContact')
     , adminPannelCalendar = require('./controllers/admin-pannel/calendar/admin-pannelCalendar')
-    , adminUpdateContact = require('./controllers/admin-pannel/contact/contactUpdate.js')
+    , adminUpdateContact = require('./controllers/admin-pannel/contact/contactUpdate')
     , adminCreateOne = require('./controllers/admin-pannel/admins/userCreate')
     , adminRegisterOne = require('./controllers/admin-pannel/admins/userRegister')
     , adminEditOne = require('./controllers/admin-pannel/admins/userEdit')
     , adminUpdateOne = require('./controllers/admin-pannel/admins/userUpdate')
-    , adminTrombiAdd = require('./controllers/admin-pannel/trombi/trombiAdd.js')
+    , adminTrombiAdd = require('./controllers/admin-pannel/trombi/trombiAdd')
     , adminTrombiPost = require('./controllers/admin-pannel/trombi/trombiPost')
     , adminTrombiEdit = require('./controllers/admin-pannel/trombi/trombiEdit')
     , adminTrombiUpdate = require('./controllers/admin-pannel/trombi/trombiUpdate')
+    ,adminDeleteOne = require('./controllers/admin-pannel/admins/userDelete')
 
 
 const app = express();
@@ -96,7 +98,7 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 app.use('*', (req, res, next) => {
-    res.locals.user = req.session.userId;
+    res.locals.admin = req.session.adminId;
     next()
 })
 
@@ -120,7 +122,9 @@ app.use('*', (req, res, next) => {
 
 // Route
 const articleValidPost = require('./middleware/articleValidPost')
+const trombiValidPost = require('./middleware/trombiValidPost')
 app.use("/articles/post", articleValidPost)
+app.use('/admin-pannel/trombi/add/post', trombiValidPost)
 
 // CONNEXION / DECONNEXION
 app.get('/admin/login', redirectAuthSuccess, userLogin)
@@ -138,13 +142,32 @@ app.get('/admin-pannel', auth, adminPannel)
 app.get('/admin-pannel/admins/create', auth, adminCreateOne)
 app.post('/admin-pannel/admins/register', auth, redirectAuthSuccess, adminRegisterOne)
 app.get('/admin-pannel/admins/edit/:id', auth, adminEditOne)
-// app.get('/admin-pannel/admins/delete/:id')
+app.post('/admin-pannel/admin/edit/post/:id', function (req,res) {
+    console.log("OK LES GARS C'EST UN BON DEBUT");          
+    
+    const Admin = require('../../../database/models/Admin');
+    let query = { id: req.body.adminId }
+        Admin.findOneAndUpdate(query, { ...req.body}, function (error, post) {
+            if (error) {
+                console.log("ERREUR", error);
+                return;
+            } else {
+                console.log("C'est OK");
+                res.redirect('/admin-pannel');
+            }
+        });
+})
+
+
+
+app.get('/admin-pannel/admins/delete/:id', auth, adminDeleteOne)
 
 // ================= TROMBI
 app.get('/admin-pannel/trombi', auth, adminPannelTrombi)
 app.get('/admin-pannel/trombi/add', auth, adminTrombiAdd)
 app.get('/admin-pannel/trombi/edit/:id', auth, adminTrombiEdit)
 // app.post('/admin-pannel/trombi/edit/post/:id')
+app.post('/admin-pannel/trombi/add/post', auth, trombiValidPost, adminTrombiPost)
 // app.get('/admin-pannel/trombi/delete/:id')
 // ====================== ACTUS
 app.get('/admin-pannel/actus', auth, adminPannelActus)
@@ -153,7 +176,7 @@ app.post("/admin-pannel/actus/post", auth, articleValidPost, articlePostControll
 app.get("/admin-pannel/actus/delete/:id", auth, articleDeleteController)
 app.get('/admin-pannel/actus/edit/:id', auth, articleEditGetController)
 app.post("/admin-pannel/actus/edit/post/:id", function (req, res) {
-    const Article = require('./database/models/Article');
+    const Article = require('./database/models/Actus');
     const path = require('path')
     let query = { id: req.body.articleId }
     const { image } = req.files
@@ -305,11 +328,9 @@ app.use((req, res) => {
     res.render('error404')
 })
 
-
-app.listen(3000, function () {
+app.listen(PORT, function () {
     console.log("Server started...");
     console.log("http://localhost:3000");
-
 })
 
 

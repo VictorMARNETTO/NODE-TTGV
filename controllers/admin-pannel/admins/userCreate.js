@@ -2,7 +2,7 @@ const adminLayout = 'adminMain'
 
 module.exports = (req, res) => {
 
-    console.log(req.flash('data'));
+    // console.log(req.flash('data'));
     
 
     res.render("admin/admins/addAdmin", {layout: adminLayout})

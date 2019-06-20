@@ -1,18 +1,18 @@
 const bcrypt = require('bcrypt')
-const User = require('../database/models/Admin')
+const Admin = require('../database/models/Admin')
 
 module.exports = (req, res) => {
 
     const {email, password} = req.body;
     
-    User.findOne({email}, (error, user) => {
-        if (user) {
-            bcrypt.compare(password, user.password, (error, same) => {
+    Admin.findOne({email}, (error, admin) => {
+        if (admin) {
+            bcrypt.compare(password, admin.password, (error, same) => {
                 if (same) {
                     console.log("OK");
                     
 
-                    req.session.userId = user._id
+                    req.session.adminId = admin._id
                     
                     res.redirect('/admin-pannel')
                 }

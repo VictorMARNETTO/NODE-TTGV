@@ -1,5 +1,5 @@
 // Post
-const Post = require('../../database/models/Article')
+const Post = require('../../database/models/Actus')
 
 module.exports = async (req,res) => {
 

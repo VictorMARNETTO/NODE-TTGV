@@ -1,15 +1,23 @@
 const bcrypt = require('bcrypt')
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
+const AdminSchema = new mongoose.Schema({
 
     name: {
         type: String,
-        required: [true, 'Votre nom est obligatoire'],
+        required: [true, 'Le nom est obligatoire'],
+    },
+    surname: {
+        type: String,
+        required: [true, 'Le prénom est obligatoire'],
+    },
+    birthdate: {
+        type: Date,
+        required: [true, 'La date de naissance est obligatoire'],
     },
     email: {
         type: String,
-        required: [true, 'Votre email est obligatoire'],
+        required: [true, `L'email est obligatoire`],
         unique: true,
     },
     password: {
@@ -19,19 +27,19 @@ const UserSchema = new mongoose.Schema({
 
 })
 
-UserSchema.pre('save', function (next) {
+AdminSchema.pre('save', function (next) {
 
-    const user = this
+    const admin = this
 
-    bcrypt.hash(user.password, 10, (error, encrypted) => {
+    bcrypt.hash(admin.password, 10, (error, encrypted) => {
 
-        user.password = encrypted
+        admin.password = encrypted
         next()
     })
 
 })
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('Admin', AdminSchema)
 
 
 //    __________

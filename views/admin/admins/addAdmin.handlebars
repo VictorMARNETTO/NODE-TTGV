@@ -8,7 +8,7 @@
     </ol>
 </div>
 
-        <form class="form-login" action="/admin-pannel/addAdmin/post" method="POST" enctype="multipart/form-data" style="text-align: center; color: green; font-size: 150%">
+        <form class="form-login" action="/admin-pannel/admins/register" method="POST" enctype="multipart/form-data" style="text-align: center; color: green; font-size: 150%">
             <div class="field">
                 <label class="label">Nom</label>
                 <div class="control">
@@ -18,13 +18,13 @@
             <div class="field">
                 <label class="label">Prénom</label>
                 <div class="control">
-                    <input class="input" type="text" name="name" placeholder="Text input" value={{data.surname}}>
+                    <input class="input" type="text" name="surname" placeholder="Text input" value={{data.surname}}>
                 </div>
             </div>
             <div class="field">
                 <label class="label">Date de naissance</label>
                 <div class="control">
-                    <input class="input" type="text" name="name" placeholder="Text input" value={{data.birthdayDate}}>
+                    <input class="input" type="date" name="birthdate" placeholder="Text input" value={{data.birthdayDate}}>
                 </div>
             </div>
             <div class="field">
@@ -47,7 +47,7 @@
                 </div>
         </form>
         <br>
-        <form action="/" method="GET" enctype="multipart/form-data">
+        <form action="/admin-pannel" method="GET" enctype="multipart/form-data">
                 <div class="control">
                     <button class="button is-text">Annuler</button>
                 </div>
